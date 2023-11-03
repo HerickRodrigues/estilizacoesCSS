@@ -66,3 +66,21 @@ body {
 .box select option {
   padding: 30px;
 }
+
+______________<>_________________
+
+public class HistoryValidator {
+    public boolean validarRoles(List<HistoryDTO> historyList) {
+        if (historyList.size() < 3) {
+            return false; // Verifica se há pelo menos três elementos na lista
+        }
+
+        HistoryDTO antepenultimo = historyList.get(historyList.size() - 3);
+        HistoryDTO penultimo = historyList.get(historyList.size() - 2);
+        HistoryDTO ultimo = historyList.get(historyList.size() - 1);
+
+        return antepenultimo.getRole().equals("user")
+                && penultimo.getRole().equals("function")
+                && ultimo.getRole().equals("assistant");
+    }
+}
